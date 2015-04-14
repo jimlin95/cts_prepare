@@ -111,8 +111,8 @@ if __name__ == '__main__':
         device, serialno = ViewClient.connectToDeviceOrExit()
         vc = ViewClient(device=device, serialno=serialno)
         device.press('KEYCODE_HOME','DOWN_AND_UP')
-        #SetWifiConnect(device,vc)
-        ModifyNetwork(device,vc)
+        SetWifiConnect(device,vc)
+        #ModifyNetwork(device,vc)
 
         # Press the HOME button to start the test from the home screen
 #        device.press('KEYCODE_HOME','DOWN_AND_UP')
