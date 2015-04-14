@@ -803,6 +803,8 @@ def changeLanguage(self, languageTo):
         android___id_list = self.vc.findViewByIdOrRaise("android:id/list")
         for k, v in LANGUAGE_SETTINGS.iteritems():
             view = self.vc.findViewWithText(v, root=android___id_list)
+            #self.vc.dump()
+            #view = self.vc.findViewWithText(v)
             if view:
                 currentLanguage = k
                 break
@@ -839,7 +841,7 @@ if __name__ == '__main__':
         
         device.press('KEYCODE_HOME','DOWN_AND_UP')
         #Change language to English (United States)
-        changeLanguage(ud,'en')
+        ud.changeLanguage('en-rUS')
         
         # Press the HOME button to start the test from the home screen
         device.press('KEYCODE_HOME','DOWN_AND_UP')

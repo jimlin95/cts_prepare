@@ -32,7 +32,7 @@ def setTimezone(device,vc):
         activity = '.Settings'
         component_name = package + '/' + activity
         device.startActivity(component=component_name)
-        vc.dump(-1)
+        vc.dump()
         view = None
         android___id_list = vc.findViewByIdOrRaise("android:id/list")       
         android___id_list.uiScrollable.setViewClient(vc)
@@ -41,14 +41,14 @@ def setTimezone(device,vc):
             view.touch()
         else:
             raise RuntimeError("Couldn't find Date & time") 
-        vc.dump(-1)
+        vc.dump()
         findandtouch(vc,u'Select time zone')
         view = None
         android___id_list = vc.findViewByIdOrRaise("android:id/list")       
         android___id_list.uiScrollable.setViewClient(vc)
         android___id_list.uiScrollable.flingToBeginning(maxSwipes=6)
         vc.dump(-1)
-        view = android___id_list.uiScrollable.scrollTextIntoView(u'Azores')
+        view = android___id_list.uiScrollable.scrollTextIntoView(u'London, Dublin')
         if view is not None:  
             view.touch()
         else:

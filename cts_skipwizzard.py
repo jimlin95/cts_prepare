@@ -23,25 +23,35 @@ from com.dtmilano.android.viewclient import ViewClient, View
 def skip_setupwizzard(vc):
     # page 1
     vc.findViewById('com.google.android.setupwizard:id/start').touch()
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
     # page 2 (wifi)
     vc.findViewById('com.android.settings:id/custom_button').touch()
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
     # page 2 sub page (wifi)
     vc.findViewById('android:id/button2').touch()
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
+    vc.dump()
     # page 3
     vc.findViewById('com.google.android.setupwizard:id/next_button').touch()
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
     vc.findViewById('com.google.android.setupwizard:id/next_button').touch()
     # page 4
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
     # page 5
     vc.findViewById('com.google.android.setupwizard:id/next_button').touch()
-    vc.dump(-1)
+    vc.sleep(3)
+    vc.dump()
+    vc.sleep(3)
     vc.findViewWithText('OK').touch()
-    vc.dump(-1)
+    vc.dump()
+    vc.sleep(3)
     vc.findViewWithText('OK').touch()
+    vc.sleep(3)
 
 if __name__ == '__main__':
     os.system("adb devices")
