@@ -23,9 +23,21 @@ except:
 # This must be imported before MonkeyRunner and MonkeyDevice,
 # otherwise the import fails.
 from com.dtmilano.android.viewclient import ViewClient, View, UiDevice
-
+import re
 #from com.android.monkeyrunner import ViewClient, MonkeyDevice, MonkeyView
+RegexType = type(re.compile(''))
 
+class ViewNotFoundException(Exception):
+    '''
+    ViewNotFoundException is raised when a View is not found.
+    '''
+
+    def __init__(self, attr, value, root):
+        if isinstance(value, RegexType):
+            msg = "Couldn't find View with %s that matches '%s' in tree with root=%s" % (attr, value.pattern, root)
+        else:
+            msg = "Couldn't find View with %s='%s' in tree with root=%s" % (attr, value, root)
+        super(Exception, self).__init__(msg)
 
 def changeLanguage(self, languageTo):
     LANGUAGE_SETTINGS = {
@@ -825,10 +837,9 @@ if __name__ == '__main__':
         vc = ViewClient(device=device, serialno=serialno)
         ud = UiDevice(vc=vc)
         
+        device.press('KEYCODE_HOME','DOWN_AND_UP')
         #Change language to English (United States)
         changeLanguage(ud,'en')
         
         # Press the HOME button to start the test from the home screen
         device.press('KEYCODE_HOME','DOWN_AND_UP')
-
-
