@@ -47,5 +47,5 @@ ModifyNetwork(vc)
 # Press the HOME button to start the test from the home screen
 device.press('KEYCODE_HOME','DOWN_AND_UP')
 set_chrome(vc)
-#device.press('KEYCODE_HOME','DOWN_AND_UP')
+device.press('KEYCODE_HOME','DOWN_AND_UP')
 
