@@ -26,11 +26,11 @@ def findandtouch(vc,string):
 	if elem:
         	elem.touch()
 		vc.dump()
-def setSecurity(device,vc):
+def setSecurity(vc):
         package = 'com.android.settings'
         activity = '.SecuritySettings'
         component_name = package + '/' + activity
-        device.startActivity(component=component_name)
+        vc.device.startActivity(component=component_name)
         vc.dump()
         findandtouch(vc,u'Screen lock')
         findandtouch(vc,u'None')
@@ -41,6 +41,6 @@ if __name__ == '__main__':
     vc = ViewClient(device=device, serialno=serialno)
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')
-    setSecurity(device,vc)
+    setSecurity(vc)
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')

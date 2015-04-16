@@ -27,11 +27,11 @@ def findandtouch(vc,string):
         	elem.touch()
 		vc.dump()
 
-def setTimezone(device,vc):        
+def setTimezone(vc):        
         package = 'com.android.settings'
         activity = '.Settings'
         component_name = package + '/' + activity
-        device.startActivity(component=component_name)
+        vc.device.startActivity(component=component_name)
         vc.dump()
         view = None
         android___id_list = vc.findViewByIdOrRaise("android:id/list")       
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         vc = ViewClient(device=device, serialno=serialno)
         device.press('KEYCODE_HOME','DOWN_AND_UP')
 
-        setTimezone(device,vc)
+        setTimezone(vc)
 
         # Press the HOME button to start the test from the home screen
         device.press('KEYCODE_HOME','DOWN_AND_UP')

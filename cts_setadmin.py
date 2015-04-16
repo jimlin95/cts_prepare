@@ -32,11 +32,11 @@ def enable_device_admin_setting(vc, name):
     else:
         print(name + " enabled")
 
-def set_device_admins(device,vc):
+def set_device_admins(vc):
         package = 'com.android.settings'
         activity = '.DeviceAdminSettings'
         component_name = package + '/' + activity
-        device.startActivity(component=component_name)
+        vc.device.startActivity(component=component_name)
         vc.dump()
         enable_device_admin_setting(vc,"android.deviceadmin.cts.CtsDeviceAdminReceiver")
         enable_device_admin_setting(vc,"android.deviceadmin.cts.CtsDeviceAdminReceiver2")
@@ -46,6 +46,6 @@ if __name__ == '__main__':
     vc = ViewClient(device=device, serialno=serialno)
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')
-    set_device_admins(device,vc)
+    set_device_admins(vc)
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')

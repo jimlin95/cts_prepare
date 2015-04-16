@@ -20,16 +20,16 @@ except:
 # otherwise the import fails.
 from com.dtmilano.android.viewclient import ViewClient, View
 
-def SetWifiConnect(device,vc):
+def SetWifiConnect(vc):
         package = 'com.android.settings'
         activity = '.Settings'
         component_name = package + '/' + activity
         ap_name = "dlink-549"
         ap_password = "38017549"
         # Open the Settings app
-        device.startActivity(component=component_name)
+        vc.device.startActivity(component=component_name)
         # Enable Wi-Fi
-        device.shell("svc wifi enable")
+        vc.device.shell("svc wifi enable")
         vc.dump()
         wifi = vc.findViewWithTextOrRaise(u'Wi‑Fi')        
         if wifi:
@@ -46,19 +46,19 @@ def SetWifiConnect(device,vc):
                 print "Cannot enable Wi-Fi"
     
         br_ap.touch()
-        device.type(ap_password)
+        vc.device.type(ap_password)
         vc.dump()
         connect = vc.findViewWithText(u'Connect')
         if connect:
                 connect.touch()
                 vc.sleep(3)
-def ModifyNetwork(device,vc):
+def ModifyNetwork(vc):
         package = 'com.android.settings'
         activity = '.Settings'
         ap_name = u"dlink-549"
         component_name = package + '/' + activity
         # Open the Settings app
-        device.startActivity(component=component_name)
+        vc.device.startActivity(component=component_name)
         vc.dump()
         wifi = vc.findViewWithTextOrRaise(u'Wi‑Fi')        
         if wifi:
@@ -88,7 +88,7 @@ def ModifyNetwork(device,vc):
         if static:
             static.touch()
             vc.dump()
-        device.dragDip((200.0, 724.0), (214.67, 418.67), 1000, 20, 0)
+        vc.device.dragDip((200.0, 724.0), (214.67, 418.67), 1000, 20, 0)
         vc.dump()
         dns1 = vc.findViewById('com.android.settings:id/dns1')
         dns1.touch()
@@ -96,11 +96,11 @@ def ModifyNetwork(device,vc):
         maxSize = len(dns1.text()) 
         while maxSize > guardrail:
             guardrail += 1
-            device.press('KEYCODE_DEL')
+            vc.device.press('KEYCODE_DEL')
             #device.press('KEYCODE_FORWARD_DEL')
-        device.press('KEYCODE_ENTER')
+        vc.device.press('KEYCODE_ENTER')
         dns1.setText('8.8.4.4')
-        device.press('KEYCODE_ENTER')
+        vc.device.press('KEYCODE_ENTER')
         vc.dump(-1)
         save = vc.findViewWithTextOrRaise(u'Save')
         if save:
@@ -112,8 +112,8 @@ if __name__ == '__main__':
         device, serialno = ViewClient.connectToDeviceOrExit()
         vc = ViewClient(device=device, serialno=serialno)
         device.press('KEYCODE_HOME','DOWN_AND_UP')
-        SetWifiConnect(device,vc)
-        #ModifyNetwork(device,vc)
+        SetWifiConnect(vc)
+        ModifyNetwork(vc)
 
         # Press the HOME button to start the test from the home screen
 #        device.press('KEYCODE_HOME','DOWN_AND_UP')

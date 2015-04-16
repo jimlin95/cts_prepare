@@ -28,11 +28,11 @@ def enable_developer_setting(vc, name):
     else:
         print(name + " enabled")
         
-def ChangeDeveloper_settings(device,vc):
+def ChangeDeveloper_settings(vc):
     package = 'com.android.settings'
     activity = '.DevelopmentSettings'
     component_name = package + '/' + activity
-    device.startActivity(component=component_name)
+    vc.device.startActivity(component=component_name)
     vc.dump(-1)
     enable_developer_setting(vc,u'Stay awake')
    #enable_developer_setting(vc,u'USB debugging')
@@ -43,6 +43,6 @@ if __name__ == '__main__':
     vc = ViewClient(device=device, serialno=serialno)
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')
-    ChangeDeveloper_settings(device,vc) 
+    ChangeDeveloper_settings(vc) 
     # Press the HOME button to start the test from the home screen
     device.press('KEYCODE_HOME','DOWN_AND_UP')

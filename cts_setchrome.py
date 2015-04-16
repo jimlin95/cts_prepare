@@ -20,15 +20,13 @@ except:
 # otherwise the import fails.
 from com.dtmilano.android.viewclient import ViewClient, View
 
-def set_chrome(device,vc):
+def set_chrome(vc):
     # page 1
     package = 'com.android.chrome'
     activity = 'com.google.android.apps.chrome.Main'
     component_name = package + '/' + activity
-    device.startActivity(component=component_name)
+    vc.device.startActivity(component=component_name)
     vc.dump(-1)
-    #vc.findViewWithText("Chrome").touch()                 
-    #vc.dump(-1)
     vc.findViewById('com.android.chrome:id/terms_accept').touch()
     vc.dump(-1)
     vc.findViewById('com.android.chrome:id/negative_button').touch()
@@ -36,4 +34,5 @@ def set_chrome(device,vc):
 if __name__ == '__main__':
     device, serialno = ViewClient.connectToDeviceOrExit()
     vc = ViewClient(device=device, serialno=serialno)
-    set_chrome(device,vc)
+    set_chrome(vc)
+    device.press('KEYCODE_HOME','DOWN_AND_UP')
