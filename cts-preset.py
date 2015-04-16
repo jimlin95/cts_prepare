@@ -32,7 +32,7 @@ os.system("adb devices")
 device, serialno = ViewClient.connectToDeviceOrExit()
 vc = ViewClient(device=device, serialno=serialno)
 ud = UiDevice(vc=vc)
-vc.sleep(3)
+vc.sleep(1)
 skip_setupwizzard(vc)
 # Press the HOME button to start the test from the home screen
 device.press('KEYCODE_HOME','DOWN_AND_UP')
@@ -46,6 +46,6 @@ SetWifiConnect(device,vc)
 ModifyNetwork(device,vc)
 # Press the HOME button to start the test from the home screen
 device.press('KEYCODE_HOME','DOWN_AND_UP')
-set_chrome(vc)
+set_chrome(device,vc)
 #device.press('KEYCODE_HOME','DOWN_AND_UP')
 

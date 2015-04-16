@@ -51,6 +51,7 @@ def SetWifiConnect(device,vc):
         connect = vc.findViewWithText(u'Connect')
         if connect:
                 connect.touch()
+                vc.sleep(3)
 def ModifyNetwork(device,vc):
         package = 'com.android.settings'
         activity = '.Settings'

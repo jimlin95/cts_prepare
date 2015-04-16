@@ -26,14 +26,21 @@ def skip_setupwizzard(vc):
     vc.dump()
     vc.sleep(3)
     # page 2 (wifi)
-    vc.findViewById('com.android.settings:id/custom_button').touch()
+    button = vc.findViewById('com.android.settings:id/custom_button')
+    if button:
+        button.touch()
+    else:
+        button = vc.findViewById('com.android.settings:id/custom_button')
+        if button:
+            button.touch()
+        else:
+            print "error"
     vc.dump()
     vc.sleep(3)
     # page 2 sub page (wifi)
     vc.findViewById('android:id/button2').touch()
     vc.dump()
     vc.sleep(3)
-    vc.dump()
     # page 3
     vc.findViewById('com.google.android.setupwizard:id/next_button').touch()
     vc.dump()
